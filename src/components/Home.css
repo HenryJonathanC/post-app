@@ -1,5 +1,5 @@
 .home{
-    background-color: antiquewhite;
+    /* background-color: antiquewhite; */
     display: flex;
     flex-direction: column;
 }
@@ -10,5 +10,9 @@
 }
 
 .Link{
+    align-self: center;
+}
+
+.greet{
     align-self: center;
 }

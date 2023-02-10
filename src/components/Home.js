@@ -3,10 +3,12 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { db } from '../firebase'
 import './Home.css'
+import { UserAuth } from '../AuthContext'
 
 const Home = () => {
-  const [posts, setPosts]= useState([])
-  const postsCollectionRef= collection(db, "posts")
+    const { user }= UserAuth()
+    const [posts, setPosts]= useState([])
+    const postsCollectionRef= collection(db, "posts")
 
 
     useEffect(()=>{
@@ -24,11 +26,13 @@ const Home = () => {
 
     return(
         <>
-            <div className='home'>
+            {user?.displayName ? <><div className='home'>
+                <h3 className='greet'>Hello {user?.displayName}</h3>
                 <h1>Posts</h1>
                 {posts.map((post) => {
                     return (
                         <div className='body' key={post.id}>
+                            <hr/>
                             <div className='post_header'>
                                 <h3>{post.Title}</h3>
                                 <div className='icons'>  
@@ -39,14 +43,28 @@ const Home = () => {
                                 </div>
                             </div>
                             <p>{post.Post}</p>
-                            <hr />
                         </div>
                     )
                 })}      
             </div>
+            <hr/>
             <Link to="/add">
-                <button className="ui positive button" style={{margin: '5px', marginLeft: '700px'}}>Add new post</button>
-            </Link>
+                <button className="ui positive button" style={{margin: '10px', alignSelf: 'center'}}>Create new post</button>
+            </Link> </> : <> <div className='home'>
+                <h3 className='greet'>Hello guest(view only mode)</h3>
+                <h1>Posts</h1>
+                {posts.map((post) => {
+                    return (
+                        <div className='body' key={post.id}>
+                            <hr/>
+                            <h3>{post.Title}</h3>        
+                            <p>{post.Post}</p>
+                        </div>
+                    )
+                })}      
+            </div>
+            <hr/> </>}
+            
         </>
     )
 }
