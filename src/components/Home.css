@@ -1,0 +1,14 @@
+.home{
+    background-color: antiquewhite;
+    display: flex;
+    flex-direction: column;
+}
+
+.body{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.Link{
+    align-self: center;
+}
