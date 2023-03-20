@@ -26,32 +26,38 @@ const Home = () => {
 
     return(
         <>
-            {user?.displayName ? <><div className='home'>
-                <h3 className='greet'>Hello {user?.displayName}</h3>
-                <h1>Posts</h1>
-                {posts.map((post) => {
-                    return (
-                        <div className='body' key={post.id}>
-                            <hr/>
-                            <div className='post_header'>
-                                <h3>{post.Title}</h3>
-                                <div className='icons'>  
-                                    <i onClick={()=>deletePost(post.id)} style={{ color: 'darkred', paddingRight: '5px', cursor: 'pointer'}} className='trash alternate outline icon'></i>
-                                    <Link to={{ pathname: `/edit/${post.id}`}}>
-                                        <i style={{cursor: 'pointer'}} className='edit outline icon'></i>
-                                    </Link>
+            {user?.displayName ? 
+            <>
+                <div className='home'>
+                    <h3 className='greet'>Hello {user?.displayName}</h3>
+                    <h1>Posts</h1>
+                    {posts.map((post) => {
+                        return (
+                            <div className='body' key={post.id}>
+                                <hr/>
+                                <div className='post_header'>
+                                    <h3>{post.Title}</h3>
+                                    <div className='icons'>  
+                                        <i onClick={()=>deletePost(post.id)} style={{ color: 'darkred', paddingRight: '5px', cursor: 'pointer'}} className='trash alternate outline icon'></i>
+                                        <Link to={{ pathname: `/edit/${post.id}`}}>
+                                            <i style={{cursor: 'pointer'}} className='edit outline icon'></i>
+                                        </Link>
+                                    </div>
                                 </div>
+                                <p>{post.Post}</p>
                             </div>
-                            <p>{post.Post}</p>
-                        </div>
-                    )
-                })}      
-            </div>
-            <hr/>
-            <Link to="/add">
-                <button className="ui positive button" style={{margin: '10px', alignSelf: 'center'}}>Create new post</button>
-            </Link> </> : <> <div className='home'>
-                <h3 className='greet'>Hello guest(view only mode)</h3>
+                        )
+                    })}      
+                </div>
+                <hr/>
+                <Link to="/add">
+                    <button className="ui positive button" style={{margin: '10px', alignSelf: 'center'}}>Create new post</button>
+                </Link> 
+            </> 
+            : 
+            <> 
+                <div className='home'>
+                <h3 className='greet'>Hello Guest<i>(view only mode)</i></h3>
                 <h1>Posts</h1>
                 {posts.map((post) => {
                     return (
@@ -63,8 +69,8 @@ const Home = () => {
                     )
                 })}      
             </div>
-            <hr/> </>}
-            
+            <hr/> 
+            </>}            
         </>
     )
 }

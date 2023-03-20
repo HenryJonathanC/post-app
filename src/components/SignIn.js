@@ -18,11 +18,15 @@ const SignIn = () => {
 
   return (
     <div className='signIn'>
-         {user?.displayName ?<> <h1>Welcome {user?.displayName}</h1>
+         {user?.displayName ?
+         <> 
+            <h1>Welcome {user?.displayName}</h1>
             <p>Click here to view, edit, delete or create new posts</p> 
             <Link to='/'>
                 <button style={{marginLeft: '10px'}} className="ui grey button">Home</button>
-            </Link> </> : 
+            </Link> 
+        </> 
+        : 
         <GoogleButton onClick={handleGoogleSignIn} />} 
     </div>
   )

@@ -20,11 +20,10 @@ const Header = () => {
         <div className="ui buttons">
             <Link to='/'>
                 <button style={{marginLeft: '10px'}} className="ui grey button">Home</button>
-            </Link>
+            </Link>  
             {user?.displayName ? <Link to='/add'>
                 <button style={{marginLeft: '10px'}} className="ui green button">Create new post</button>
-            </Link> :<> </> }
-            
+            </Link> :<> </> }          
             {user?.displayName ? <button onClick={handleSignOut} style={{marginLeft: '10px'}} className="ui red button">Logout</button> :
                 <Link to='/signIn'>
                     <button style={{marginLeft: '10px'}} className="ui blue button">Sign in</button>
