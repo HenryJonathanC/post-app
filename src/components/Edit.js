@@ -17,7 +17,7 @@ const Edit = () => {
           setPosts(data.docs.map((doc)=> ({...doc.data(), id: doc.id})))
         }
         getPosts()
-    }, [])
+    }, [posts])
 
     const editPost = async(id) =>{
         const postDoc= doc(db, "posts", id)
@@ -36,8 +36,8 @@ const Edit = () => {
                 return (
                     <div className='edit' key={post.id}>
                         <h2>Edit Post</h2>
-                        <input className="title" placeholder='Title...' type='text' onChange={ e => setNewTitle(e.target.value)}/>
-                        <textarea className="content" placeholder='Post...' type='text' onChange={e => setNewPost(e.target.value)} />
+                        <input className="title" placeholder='New title...' type='text' onChange={ e => setNewTitle(e.target.value)}/>
+                        <textarea className="content" placeholder='New post...' type='text' onChange={e => setNewPost(e.target.value)} />
                         <Link to="/">
                             <button type='submit' className="ui positive button" onClick={() => editPost(post.id)}>Post</button>
                         </Link>
